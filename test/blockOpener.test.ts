@@ -32,6 +32,10 @@ describe("member-declaration", () => {
   it("matches a multi-line parameter list via preceding lines", () => {
     assertRule("int b)", "member-declaration", ["public static void Add(int a,"]);
   });
+
+  it("matches a new-modified (member-hiding) method declaration", () => {
+    assertRule("new void Display()", "member-declaration");
+  });
 });
 
 describe("type-declaration", () => {
@@ -87,6 +91,18 @@ describe("fallback (no match)", () => {
 
   it("rejects a call statement missing its semicolon", () => {
     assertNoMatch('Console.WriteLine("hi")');
+  });
+
+  it("rejects a bare object-creation statement missing its semicolon", () => {
+    assertNoMatch("new Player(10)");
+  });
+
+  it("rejects a generic object-creation statement missing its semicolon", () => {
+    assertNoMatch("new List<int>(10)");
+  });
+
+  it("rejects an assignment from an object-creation expression", () => {
+    assertNoMatch("var p = new Player(10)");
   });
 
   it("rejects an expression-bodied property", () => {

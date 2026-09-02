@@ -49,6 +49,13 @@ const MEMBER_HEAD = /^[\w\s<>[\],.?@]+$/;
  * (`Console.WriteLine`), while a declaration's head is always two or more
  * whitespace-separated tokens (`public static void Display`, `void Local`,
  * `public Player`).
+ *
+ * `new Player(10)` (object creation as a bare statement) has the same
+ * two-token shape (`new`, `Player`) and would otherwise pass step 5, so it
+ * gets a dedicated check: a real `new`-modified declaration (C#'s member-
+ * hiding modifier, e.g. `new void Display()`) always has a return type and
+ * a name after `new` — three or more tokens. Exactly two means `new` is the
+ * object-creation operator, not the modifier.
  */
 const memberDeclarationRule: BlockRule = {
   id: "member-declaration",
@@ -70,7 +77,16 @@ const memberDeclarationRule: BlockRule = {
       return false;
     }
 
-    return head.split(/\s+/).length >= 2;
+    const tokens = head.split(/\s+/);
+    if (tokens.length < 2) {
+      return false;
+    }
+
+    if (tokens[0] === "new" && tokens.length === 2) {
+      return false;
+    }
+
+    return true;
   },
 };
 
