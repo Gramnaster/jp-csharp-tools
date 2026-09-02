@@ -18,7 +18,7 @@
     "vscode": "^1.104.0",
     "node": ">=22.13.0"
   },
-  "activationEvents": [],
+  "activationEvents": ["onLanguage:csharp"],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
@@ -32,12 +32,6 @@
         "command": "jpCsharpTools.smartEnter",
         "key": "shift+enter",
         "when": "editorTextFocus && !editorReadonly && editorLangId == csharp && !suggestWidgetVisible && !inSnippetMode"
-      }
-    ],
-    "snippets": [
-      {
-        "language": "csharp",
-        "path": "./snippets/godot.code-snippets"
       }
     ]
   },
