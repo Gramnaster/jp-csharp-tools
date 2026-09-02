@@ -25,6 +25,37 @@ In a `.cs` file, `Shift+Enter`:
   partially stripped). This is intentional: every malformed result it can produce fails the
   block-opener rules and falls through to the correct fallback anyway.
 
+## Install
+
+Follow these steps to install the extension in Visual Studio Code.
+
+### Requirements
+
+- Visual Studio Code, version 1.104.0 or later.
+- Node.js, version 22.13.0 or later.
+- pnpm. Run `corepack enable` in a terminal. This command installs pnpm.
+- The `code` command in your terminal. Visual Studio Code adds this command on Windows during
+  installation. On macOS and Linux, open the Command Palette and run
+  `Shell Command: Install 'code' command in PATH`.
+
+### Steps
+
+1. Clone this repository.
+2. Open a terminal in the repository folder.
+3. Run `pnpm install`. This command installs the dependencies.
+4. Run `pnpm compile`. This command builds the extension.
+5. Run `pnpm package`. This command creates a VSIX file. The file name is
+   `jp-csharp-tools-<version>.vsix`. The version number matches the `version` field in
+   `package.json`.
+6. Run `code --install-extension jp-csharp-tools-<version>.vsix`. Replace `<version>` with the
+   actual version number.
+7. Reload each open Visual Studio Code window. Open the Command Palette and run
+   `Developer: Reload Window`.
+
+Shift+Enter now works in every `.cs` file in every workspace on this machine.
+
+To update the extension, run `git pull` in the repository folder. Then repeat steps 3 to 7.
+
 ## Development
 
 Requires [pnpm](https://pnpm.io) (pinned via `packageManager` in `package.json`; `corepack enable`
