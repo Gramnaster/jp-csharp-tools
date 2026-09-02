@@ -40,8 +40,9 @@
     "watch": "tsc -w -p ./",
     "lint": "eslint . --max-warnings 0",
     "typecheck": "tsc --noEmit",
-    "test": "node --test ./test/**/*.test.ts",
-    "test:watch": "node --test --watch ./test/**/*.test.ts",
+    "pretest": "tsc -p ./tsconfig.test.json",
+    "test": "node --test out-test/test/**/*.test.js",
+    "test:watch": "node --test --watch out-test/test/**/*.test.js",
     "package": "vsce package --no-dependencies"
   },
   "devDependencies": {
