@@ -33,6 +33,12 @@
         "key": "shift+enter",
         "when": "editorTextFocus && !editorReadonly && editorLangId == csharp && !suggestWidgetVisible && !inSnippetMode"
       }
+    ],
+    "snippets": [
+      {
+        "language": "csharp",
+        "path": "./snippets/godot.code-snippets"
+      }
     ]
   },
   "scripts": {

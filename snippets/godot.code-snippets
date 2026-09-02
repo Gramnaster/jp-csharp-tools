@@ -1,0 +1,165 @@
+{
+    // Node template
+    // Empty _Process still costs a per-frame StringName lookup in Godot's native
+    // dispatch (InvokeGodotClassMethod/HasGodotClassMethod) even with an empty body.
+    // Delete it, or call SetProcess(false), if this node doesn't need it.
+    "Godot custom node template": {
+        "prefix": "node",
+        "body": [
+            "using Godot;",
+            "",
+            "public partial class ${1:$TM_FILENAME_BASE} : ${2|Node,Node2D,Node3D,Control,CharacterBody2D,Area2D,RigidBody2D|}",
+            "{",
+            "    public override void _Ready()",
+            "    {",
+            "    }",
+            "",
+            "    public override void _Process(double delta)",
+            "    {",
+            "    }",
+            "}"
+        ],
+        "description": "Godot node template with _Ready() and _Process() overrides"
+    },
+
+    // Godot utils
+    "Godot print": {
+        "prefix": "print",
+        "body": "GD.Print($1);",
+        "description": "Print to Godot console"
+    },
+    // Lifecycle virtual methods
+    "Godot _EnterTree()": {
+        "prefix": "entertree",
+        "body": [
+            "public override void _EnterTree()",
+            "{",
+            "    $1",
+            "}"
+        ],
+        "description": "Godot _EnterTree() virtual method"
+    },
+    "Godot _Ready()": {
+        "prefix": "ready",
+        "body": [
+            "public override void _Ready()",
+            "{",
+            "    $1",
+            "}"
+        ],
+        "description": "Godot _Ready() virtual method"
+    },
+    "Godot _Process()": {
+        "prefix": "process",
+        "body": [
+            "public override void _Process(double delta)",
+            "{",
+            "    $1",
+            "}"
+        ],
+        "description": "Godot _Process() virtual method"
+    },
+    "Godot _PhysicsProcess()": {
+        "prefix": "processp",
+        "body": [
+            "public override void _PhysicsProcess(double delta)",
+            "{",
+            "    $1",
+            "}"
+        ],
+        "description": "Godot _PhysicsProcess() virtual method"
+    },
+    "Godot _ExitTree()": {
+        "prefix": "exittree",
+        "body": [
+            "public override void _ExitTree()",
+            "{",
+            "    $1",
+            "}"
+        ],
+        "description": "Godot _ExitTree() virtual method"
+    },
+    // Input virtual methods
+    "Godot _Input()": {
+        "prefix": "input",
+        "body": [
+            "public override void _Input(InputEvent @event)",
+            "{",
+            "    $1",
+            "}"
+        ],
+        "description": "Godot _Input() virtual method"
+    },
+    "Godot _ShortcutInput()": {
+        "prefix": "inputs",
+        "body": [
+            "public override void _ShortcutInput(InputEvent @event)",
+            "{",
+            "    $1",
+            "}"
+        ],
+        "description": "Godot _ShortcutInput() virtual method"
+    },
+    "Godot _UnhandledInput()": {
+        "prefix": "inputu",
+        "body": [
+            "public override void _UnhandledInput(InputEvent @event)",
+            "{",
+            "    $1",
+            "}"
+        ],
+        "description": "Godot _UnhandledInput() virtual method"
+    },
+    "Godot _GuiInput()": {
+        "prefix": "inputg",
+        "body": [
+            "public override void _GuiInput(InputEvent @event)",
+            "{",
+            "    $1",
+            "}"
+        ],
+        "description": "Godot _GuiInput() virtual method"
+    },
+    // Other virtual methods
+    "Godot _Notification()": {
+        "prefix": "noti",
+        "body": [
+            "public override void _Notification(int what)",
+            "{",
+            "    $1",
+            "}"
+        ],
+        "description": "Godot _Notification() virtual method"
+    },
+    "Godot _Draw()": {
+        "prefix": "draw",
+        "body": [
+            "public override void _Draw()",
+            "{",
+            "    $1",
+            "}"
+        ],
+        "description": "Godot _Draw() virtual method"
+    },
+    // Godot exported properties
+    "Godot [Export]": {
+        "prefix": "export",
+        "body": "[Export] private ${1|Node,Node2D,Node3D,Control,CharacterBody2D,Area2D,RigidBody2D|} ${2:_node};",
+        "description": "Godot [Export] attribute"
+    },
+    "Godot [ExportGroup]": {
+        "prefix": "exportg",
+        "body": "[ExportGroup(\"$1\")]",
+        "description": "Godot [ExportGroup] attribute"
+    },
+    "Godot [ExportSubgroup]": {
+        "prefix": "exportsg",
+        "body": "[ExportSubgroup(\"$1\")]",
+        "description": "Godot [ExportSubgroup] attribute"
+    },
+    "Godot [ExportCategory]": {
+        "prefix": "exportc",
+        "body": "[ExportCategory(\"$1\")]",
+        "description": "Godot [ExportCategory] attribute"
+    },
+}
