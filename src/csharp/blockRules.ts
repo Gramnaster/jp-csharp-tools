@@ -14,7 +14,7 @@ export interface BlockRule {
   matches(line: NormalizedLine): boolean;
 }
 
-const BARE_KEYWORD = /^(else|try|finally|do|unsafe|checked|unchecked|get|set|init)$/;
+const BARE_KEYWORD = /^(else|try|catch|finally|do|unsafe|checked|unchecked|get|set|init)$/;
 
 const bareKeywordRule: BlockRule = {
   id: "bare-keyword",

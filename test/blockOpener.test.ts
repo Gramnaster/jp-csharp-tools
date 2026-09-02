@@ -71,6 +71,10 @@ describe("bare-keyword", () => {
     assertRule("try", "bare-keyword");
   });
 
+  it("matches a bare catch with no exception filter", () => {
+    assertRule("catch", "bare-keyword");
+  });
+
   it("matches a property accessor", () => {
     assertRule("get", "bare-keyword");
   });
